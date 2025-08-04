@@ -39,6 +39,7 @@ jobs:      # Defines one or more jobs (executed in parallel unless you specify d
         # Runs linting on app.py
 
   testing:
+    needs: linting
     runs-on: ubuntu-latest
 
     steps:
