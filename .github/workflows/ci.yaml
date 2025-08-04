@@ -1,0 +1,30 @@
+name: CI   # Name of your workflow (will appear in GitHub Actions UI)
+
+on: push   # Trigger: runs every time you push code to any branch
+
+jobs:      # Defines one or more jobs (executed in parallel unless you specify dependencies)
+
+  linting:  # Job name
+    runs-on: ubuntu-latest   # The job runs on a GitHub-hosted Ubuntu runner
+    
+    steps:   # Each job is a sequence of steps
+      - name: code checkout
+        uses: actions/checkout@v3  
+        # This clones your repo into the runner machine
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:                # <-- Missing in your script
+          python-version: '3.9'  
+        # Installs Python 3.9 on the runner
+
+      - name: install flake8
+        run: |               
+          python -m pip install --upgrade pip
+          pip install flake8
+        # Installs the linter tool flake8
+
+      - name: run flake8
+        run: |
+          flake8 app.py
+        # Runs linting on app.py
