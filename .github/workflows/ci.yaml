@@ -1,6 +1,10 @@
 name: CI   # Name of your workflow (will appear in GitHub Actions UI)
 
-on: push   # Trigger: runs every time you push code to any branch
+on:    # Trigger: runs every time you push code to any branch
+  push:
+    branches:
+      - master
+  pull_request:  
 
 jobs:      # Defines one or more jobs (executed in parallel unless you specify dependencies)
 
