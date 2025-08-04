@@ -10,6 +10,7 @@ jobs:      # Defines one or more jobs (executed in parallel unless you specify d
     strategy:         # To execute on multiple OS parallely
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        version: ['3.9', '3.10']
     
     steps:   # Each job is a sequence of steps
       - name: code checkout
@@ -19,7 +20,7 @@ jobs:      # Defines one or more jobs (executed in parallel unless you specify d
       - name: setup python
         uses: actions/setup-python@v2
         with:                # <-- Missing in your script
-          python-version: '3.9'  
+          python-version: ${{ matrix.version }}
         # Installs Python 3.9 on the runner
 
       - name: install flake8
