@@ -5,7 +5,11 @@ on: push   # Trigger: runs every time you push code to any branch
 jobs:      # Defines one or more jobs (executed in parallel unless you specify dependencies)
 
   linting:  # Job name
-    runs-on: ubuntu-latest   # The job runs on a GitHub-hosted Ubuntu runner
+    runs-on: ${{ matrix.os }}   # The job runs on a GitHub-hosted Ubuntu runner
+
+    strategy:         # To execute on multiple OS parallely
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     
     steps:   # Each job is a sequence of steps
       - name: code checkout
